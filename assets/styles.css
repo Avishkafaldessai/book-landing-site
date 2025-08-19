@@ -1,0 +1,33 @@
+/* Global styles using Outfit */
+:root {
+  --brand: #0f172a;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: 'Outfit', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  color: #0b1220;
+  background-color: #fff;
+}
+
+.brand { color: var(--brand); letter-spacing: .5px; }
+
+.hero-section {
+  background: radial-gradient(1200px 600px at -10% -20%, #f0f6ff 0%, transparent 60%), linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.review { transition: transform .2s ease, box-shadow .2s ease; }
+.review:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.06); }
+
+.object-fit-cover { object-fit: cover; }
+
+/* Carousel controls alignment on small screens */
+#testimonials .btn { min-width: 40px; }
+
+/* Footer */
+footer { font-weight: 400; }
+
+/* Utility */
+.rounded-4 { border-radius: 1rem !important; }
+.shadow-sm { box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important; }
