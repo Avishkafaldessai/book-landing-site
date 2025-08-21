@@ -9,369 +9,1564 @@
     content="Discover The Quiet Momentum—an inspiring book that helps you build habits, focus, and momentum in your daily life." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  
   <style>
     :root {
-      --bs-font-sans-serif: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bs-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --primary-blue: #4A90E2;
+      --primary-gradient: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+      --secondary-gradient: linear-gradient(135deg, #FF6B9D 0%, #E91E63 100%);
+      --teal-gradient: linear-gradient(135deg, #26D0CE 0%, #1A9F9A 100%);
+      --purple-gradient: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      --orange-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      --dark-bg: #2C3E50;
+      --light-gray: #F8FAFC;
+      --section-padding: 5rem 0;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Outfit';
+      font-family: 'Inter', sans-serif;
       line-height: 1.6;
+      color: #2C3E50;
+      overflow-x: hidden;
     }
 
-    .brand {
-      font-size: 1.5rem;
-      letter-spacing: -0.5px;
+    /* Floating particles animation */
+    .floating-particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .hero-section {
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    .particle {
+      position: absolute;
+      background: var(--primary-blue);
+      border-radius: 50%;
+      opacity: 0.1;
+      animation: float 15s infinite linear;
     }
 
-    .btn {
-      border-radius: 0.75rem;
-      font-weight: 500;
-      padding: 0.75rem 1.5rem;
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.1;
+      }
+      90% {
+        opacity: 0.1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
     }
 
-    .btn-lg {
-      padding: 1rem 2rem;
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      transition: all 0.3s ease;
     }
 
-    .rounded-4 {
-      border-radius: 1rem !important;
+    .navbar.scrolled {
+      padding: 0.5rem 0;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
     }
 
-    .review {
-      transition: transform 0.2s ease;
-    }
-
-    .review:hover {
-      transform: translateY(-2px);
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.75rem;
+      color: var(--primary-blue) !important;
+      letter-spacing: -0.02em;
+      transition: all 0.3s ease;
     }
 
     .navbar-brand:hover {
-      color: var(--bs-dark) !important;
+      transform: scale(1.05);
     }
 
+    .nav-link {
+      font-weight: 500;
+      color: white !important;
+      margin: 0 0.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+    
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 50%;
+      background: white !important;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover {
+      color: white !important;
+    
+      transform: translateY(-1px);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+
+    }
+
+    /* Buttons with enhanced animations */
+    .btn-primary-custom {
+      background: var(--primary-gradient);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: all 0.5s;
+    }
+
+    .btn-primary-custom:hover::before {
+      left: 100%;
+    }
+
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+      color: white;
+    }
+
+    .btn-outline-custom {
+      border: 2px solid var(--primary-blue);
+      color: var(--primary-blue);
+      background: transparent;
+      font-weight: 600;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-outline-custom::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: var(--primary-gradient);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .btn-outline-custom:hover::before {
+      width: 100%;
+    }
+
+    .btn-outline-custom:hover {
+      color: white;
+      transform: translateY(-2px);
+      border-color: transparent;
+    }
+
+    /* Hero Section with animated background */
+    .hero-section {
+      background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 50%, #F1F5F9 100%);
+      padding: 8rem 0 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%234A90E2" fill-opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="%23FF6B9D" fill-opacity="0.1"/><circle cx="40" cy="80" r="2.5" fill="%2326D0CE" fill-opacity="0.1"/></svg>');
+      opacity: 0.6;
+      animation: backgroundFloat 20s ease-in-out infinite;
+    }
+
+    @keyframes backgroundFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .display-5 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #1E293B;
+      margin-bottom: 1.5rem;
+      animation: typewriter 2s steps(20) 0.5s both;
+    }
+
+    @keyframes typewriter {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    .lead {
+      font-size: 1.25rem;
+      color: white;
+      font-weight: 400;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-out 1s both;
+    }
+
+    .lead-2 {
+      font-size: 1.25rem;
+      color: black;
+      font-weight: 400;
+      line-height: 1.6;
+      animation: fadeIn 1s ease-out 1s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hero-image img {
+      border-radius: 10px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+      /* animation: floatImage 6s ease-in-out infinite; */
+    }
+
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.02) rotate(-1deg);
+    }
+
+    /* Interactive Stats Counter */
+    .stats-section {
+      background: transparent;
+      color: white;
+      padding: 3rem 0;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .stat-item.animated .stat-number {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Feature Lists with icons */
+    .list-unstyled li {
+      padding: 0.75rem 0;
+      color: white;
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 2rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .list-unstyled li:hover {
+      background: rgba(74, 144, 226, 0.05);
+      transform: translateX(5px);
+      padding-left: 2.5rem;
+    }
+
+    .list-unstyled li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-blue);
+      font-weight: bold;
+      background: rgba(74, 144, 226, 0.1);
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .list-unstyled li:hover::before {
+      background: var(--primary-blue);
+      color: white;
+      transform: scale(1.2);
+    }
+
+
+    .list-unstyled-2 li {
+      padding: 0.75rem 0;
+      color: black;
+      font-size: 0.95rem;
+      position: relative;
+      padding-left: 2rem;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .list-unstyled-2 li:hover {
+      background: rgba(74, 144, 226, 0.05);
+      transform: translateX(5px);
+      padding-left: 2.5rem;
+    }
+
+    .list-unstyled-2 li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--primary-blue);
+      font-weight: bold;
+      background: rgba(74, 144, 226, 0.1);
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      transition: all 0.3s ease;
+    }
+
+    .list-unstyled-2 li:hover::before {
+      background: var(--primary-blue);
+      color: white;
+      transform: scale(1.2);
+    }
+    /* Interactive Progress Bars */
+    .progress-section {
+      background: #f8f9fa;
+      padding: 3rem 0;
+    }
+
+    .progress-item {
+      margin-bottom: 2rem;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: between;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .progress-bar-custom {
+      height: 10px;
+      background: #e9ecef;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      width: 0;
+      transition: width 2s ease-in-out;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* About Section */
+    .bg-light {
+      background: var(--light-gray) !important;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #1E293B;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 4px;
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+
+    /* Enhanced Book Cards with 3D effect */
+    .book-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border: 1px solid #F1F5F9;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .book-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: all 0.5s;
+    }
+
+    .book-card:hover::before {
+      left: 100%;
+    }
+
+    .book-card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-card img {
+      height: 280px;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 15px;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .book-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .book-card h5 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 1rem;
+    }
+
+    .book-card .h2 {
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+
+    .price-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--secondary-gradient);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Reading Progress Indicator */
+    .reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--primary-gradient);
+      z-index: 1000;
+      transition: width 0.3s ease;
+    }
+
+    /* Interactive Timeline */
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-gradient);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-content {
+      background: #ebebeb;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      position: relative;
+      width: 45%;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-left: 55%;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-right: 55%;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 50%;
+      top: 2rem;
+      width: 20px;
+      height: 20px;
+      background: var(--primary-blue);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      border: 4px solid white;
+      box-shadow: 0 0 0 4px var(--primary-blue);
+    }
+
+    /* Enhanced About Image */
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      filter: brightness(1.1);
+    }
+
+    /* .about-image:hover img {
+      transform: scale(1.05) rotate(-2deg);
+    } */
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      width: 100px;
+      height: 100px;
+      background: var(--teal-gradient);
+      border-radius: 50%;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    /* Interactive Testimonials */
+    .review {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      height: 100%;
+      border: 1px solid #F1F5F9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 4rem;
+      color: var(--primary-blue);
+      opacity: 0.1;
+      font-family: Georgia, serif;
+    }
+
+    .review:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .review p {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #475569;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 2;
+    }
+
+    .review .small {
+      color: var(--primary-blue);
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Star Rating Animation */
+    .rating {
+      display: flex;
+      gap: 0.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .star {
+      color: #FFD700;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .star:hover {
+      transform: scale(1.3) rotate(15deg);
+    }
+
+    /* Carousel Controls */
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-dark {
+      border-color: #E2E8F0;
+      color: #64748B;
+      background: white;
+    }
+
+    .btn-outline-dark:hover {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+    }
+
+    /* Enhanced Contact Form */
     .form-control {
-      border-radius: 0.5rem;
-      padding: 0.75rem;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 1rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #FAFBFC;
     }
 
+    .form-control:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.15);
+      background: white;
+      transform: translateY(-2px);
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus + .form-label,
+    .form-control:focus ~ .form-label {
+      color: var(--primary-blue);
+      transform: translateY(-2px);
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+      border: 1px solid #F1F5F9;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+
+    /* Section Spacing */
+    .py-5 {
+      padding: var(--section-padding) !important;
+    }
+
+    /* Enhanced Modal */
+    .modal-content {
+      border-radius: 20px !important;
+      border: none;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-gradient);
+    }
+
+    .modal-header {
+      border-bottom: 1px solid #F1F5F9;
+      padding: 2rem 2rem 1rem 2rem;
+      background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    }
+
+    .modal-body {
+      padding: 1rem 2rem 2rem 2rem;
+    }
+
+    .modal-title {
+      color: #1E293B;
+      position: relative;
+    }
+
+    /* Alerts */
     .alert-success {
-      background-color: #d1e7dd;
-      border-color: #badbcc;
-      color: #0f5132;
-      border-radius: 0.75rem;
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: white;
+      border: none;
+      border-radius: 12px;
     }
 
     .alert-danger {
-      background-color: #f8d7da;
-      border-color: #f5c2c7;
-      color: #842029;
-      border-radius: 0.75rem;
+      background: linear-gradient(135deg, #EF4444, #DC2626);
+      color: white;
+      border: none;
+      border-radius: 12px;
     }
 
+    /* Loading Spinner */
     .spinner-border-sm {
       width: 1rem;
       height: 1rem;
     }
-    .py-5 {
-    padding-top: 4rem !important;
-    padding-bottom: 3rem !important;
+
+    /* FAQ Section */
+    .faq-item {
+      background: white;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .faq-question {
+      padding: 1.5rem;
+      background: #f8f9fa;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background:#e7e7ff;
+      color: gray;
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-answer.active {
+      padding: 1.5rem;
+      max-height: 200px;
+    }
+
+    /* Social Media Icons */
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .social-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
+      color: white;
+    }
+
+    /* Scroll to top button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
+    }
+
+    .scroll-to-top.visible {
+      display: flex;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .display-5 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-section {
+        padding: 6rem 0 4rem 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .book-card {
+        padding: 1.5rem;
+      }
+      
+      .contact-form {
+        padding: 2rem;
+      }
+
+      .timeline::before {
+        left: 20px;
+      }
+
+      .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+      }
+
+      .timeline-marker {
+        left: 20px;
+      }
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Additional Professional Touches */
+    .shadow-lg {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .rounded-4 {
+      border-radius: 1.5rem !important;
+    }
+
+    /* Text Colors */
+    .text-body-secondary {
+      color: #64748B !important;
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Book Preview Modal */
+    .book-preview {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .preview-page {
+      background: white;
+      padding: 2rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-link.active {
+  background: white !important;
+  color: #2F5A6C !important;  /* contrast text */
+  border-radius: 6px;        /* optional for better look */
+  padding: 0.4rem 0.8rem;    /* optional spacing */
 }
 
-.book-card img {
-      height: 230px; 
-      width: 100%;
-      object-fit: contain; 
-    }
-
-    .book-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .book-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
-    } 
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress"></div>
+
+  <!-- Floating Particles -->
+  <div class="floating-particles" id="particles"></div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="    background: #2F5A6C !important;">
     <div class="container">
-      <a class="navbar-brand fw-bold brand" href="#">The Book Hub</a>
+      <a class="navbar-brand fw-bold" href="#" style="color: white !important;">The Book Hub</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
         aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navMenu">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#book">Book</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link"   href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link"   href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link"   href="#book">Book</a></li>
+          <li class="nav-item"><a class="nav-link"  href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link"   href="#faq">FAQ</a></li>
+          <li class="nav-item"><a class="nav-link"   href="#contact">Contact</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <header id="home" class="py-5 hero-section">
-    <div class="container py-4">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-6">
+  <header id="home" class="hero-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 hero-content">
           <h1 class="display-5 fw-bold lh-tight">The Quiet Momentum</h1>
-          <p class="lead mt-3">Build unstoppable habits with calm focus. This book is your friendly guide to creating
+          <p class="lead-2 mt-3">Build unstoppable habits with calm focus. This book is your friendly guide to creating
             momentum without burnout.</p>
-          <div class="d-flex gap-2 mt-4">
-            <a href="#book" class="btn btn-dark btn-lg">Buy Now</a>
-            <a href="#about" class="btn btn-outline-dark btn-lg">Learn More</a>
+          <div class="d-flex gap-3 mt-4">
+            <a href="#book" class="btn btn-primary-custom btn-lg">
+             Buy Now
+            </a>
+            <a href="#about" class="btn btn-outline-custom btn-lg">
+             Learn More
+            </a>
           </div>
-          <ul class="list-unstyled mt-4 small text-body-secondary">
-            <li>• Practical frameworks and exercises</li>
-            <li>• Real stories &amp; simple habit systems</li>
-            <li>• Actionable checklists at the end of every chapter</li>
+          <ul class="list-unstyled-2 mt-4">
+            <li><i class="fas fa-check-circle me-2"></i>Practical frameworks and exercises</li>
+            <li><i class="fas fa-chart-line me-2"></i>Real stories & simple habit systems</li>
+            <li><i class="fas fa-clipboard-check me-2"></i>Actionable checklists at the end of every chapter</li>
           </ul>
         </div>
-        <div class="col-lg-6 text-center">
+        <div class="col-lg-6 text-center hero-image">
           <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
-            class="img-fluid rounded-4 shadow" alt="Book cover mockup">
+            class="img-fluid shadow-lg" alt="Book cover mockup">
         </div>
       </div>
     </div>
   </header>
- 
 
-  <section id="about" class="py-5 bg-light">
+  <!-- Stats Section -->
+  <section class="stats-section">
     <div class="container">
-      <div class="row g-4 align-items-center">
-        
-        <div class="col-md-6 text-center">
+      <!-- <div class="row">
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number" data-target="10000">0</div>
+            <div class="stat-label">Happy Readers</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number" data-target="64">0</div>
+            <div class="stat-label">Pages of Wisdom</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number" data-target="25">0</div>
+            <div class="stat-label">Practical Exercises</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="stat-item">
+            <div class="stat-number" data-target="95">0</div>
+            <div class="stat-label">Satisfaction Rate</div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Progress Section -->
+  <section class="progress-section animate-on-scroll">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Why This Book Works</h2>
+        <p class="lead text-body-secondary">Based on proven methodologies and real-world application</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="progress-item">
+            <div class="progress-label d-flex justify-content-between">
+              <span>Habit Formation Success</span>
+              <span>92%</span>
+            </div>
+            <div class="progress-bar-custom">
+              <div class="progress-fill" data-width="92"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label d-flex justify-content-between">
+              <span>Productivity Improvement</span>
+              <span>87%</span>
+            </div>
+            <div class="progress-bar-custom">
+              <div class="progress-fill" data-width="87"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label d-flex justify-content-between">
+              <span>Work-Life Balance</span>
+              <span>94%</span>
+            </div>
+            <div class="progress-bar-custom">
+              <div class="progress-fill" data-width="94"></div>
+            </div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label d-flex justify-content-between">
+              <span>Long-term Consistency</span>
+              <span>89%</span>
+            </div>
+            <div class="progress-bar-custom">
+              <div class="progress-fill" data-width="89"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-5 bg-light animate-on-scroll" style="background-color: rgb(47, 90, 108) !important;">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-md-6 text-center about-image">
           <img
             src="https://m.media-amazon.com/images/I/41AOqrVj0ML.jpg"
-            class="rounded-4 shadow-sm"
+            class="img-fluid shadow-lg"
             alt="Reading a book"
-            style="max-width: 80%; height: auto; object-fit: contain;">
+            style="max-width: 80%; height: auto;">
         </div>
   
         <div class="col-md-6">
-          <h2 class="fw-bold mb-3">About the Book</h2>
-          <p>
+          <h2 class="section-title">About the Book</h2>
+          <p class="lead mb-4">
             What if progress didn't need to be loud? 
             <em>The Quiet Momentum</em> is a compact, practical book that
             helps you build daily systems—so your goals move forward even when motivation is low.
           </p>
-          <ul>
-            <li>Daily habit loops that actually stick</li>
-            <li>Deep work without burning out</li>
-            <li>Lightweight planning that compounds</li>
-            <li>Strategies for deep work without draining your energy</li>
-            <li>Publisher  :  Brownlow Pub Co</li>
-            <li>Language  :  English</li>
-            <li>Print length  :  64 pages</li>
+          <ul class="list-unstyled">
+            <li><i class="fas fa-cog me-2"></i>Daily habit loops that actually stick</li>
+            <li><i class="fas fa-brain me-2"></i>Deep work without burning out</li>
+            <li><i class="fas fa-calendar-alt me-2"></i>Lightweight planning that compounds</li>
+            <li><i class="fas fa-battery-full me-2"></i>Strategies for deep work without draining your energy</li>
+            <li><i class="fas fa-building me-2"></i>Publisher: Brownlow Pub Co</li>
+            <li><i class="fas fa-language me-2"></i>Language: English</li>
+            <li><i class="fas fa-file-alt me-2"></i>Print length: 64 pages</li>
           </ul>
-     
+        
         </div>
-  
       </div>
     </div>
   </section>
+
+
   
-  <section id="book" class="py-5">
+  <section id="book" class="py-5 animate-on-scroll">
     <div class="container">
-      <h2 class="fw-bold mb-5 text-center">Own the Book</h2>
+      <div class="text-center mb-5">
+        <h2 class="section-title">Own the Book</h2>
+        <p class="lead text-body-secondary">Choose from our collection of transformational reads</p>
+      </div>
   
       <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
-  
-        <!-- Book 1 -->
         <div class="col">
-          <div class="p-4 rounded-4 border h-100 text-center d-flex flex-column book-card">
-            <img src="https://m.media-amazon.com/images/I/41AOqrVj0ML.jpg" 
-                 class="rounded-4 shadow-sm mb-3" 
-                 alt="Great Expectations">
-            <h5 class="mb-1">The Quiet Momentum</h5>
-          
-            <ul class="small mb-3 list-unstyled">
-              <li> Brownlow Pub Co</li>
-              <li>Language: English</li>
-            </ul>
-            <div class="h2 fw-bold mb-2">₹1499</div>
-            <a href="#contact" onclick="selectBook('The Quiet Momentum')" class="btn btn-dark mt-auto w-100">Buy Now</a>
-          </div>
-        </div>
-  
-        <!-- Book 2 -->
-        <div class="col">
-          <div class="p-4 rounded-4 border h-100 text-center d-flex flex-column book-card">
-            <img src="https://wp.dailybruin.com/images/2016/01/web.ae_.wuthering.COURTESY.jpg" 
-                 class="rounded-4 shadow-sm mb-3" 
-                 alt="Wuthering Heights">
-            <h5 class="mb-1">Wuthering Heights</h5>
-            
-            <ul class="small mb-3 list-unstyled">
-              <li> Emily Brontë</li>
-              <li>Language: English</li>
-            </ul>
-            <div class="h2 fw-bold mb-2">₹799</div>
-            <a href="#contact" onclick="selectBook('Wuthering Heights')" class="btn btn-outline-dark mt-auto w-100">Buy Now</a>
-          </div>
-        </div>
-  
-        <!-- Book 3 -->
-        <div class="col">
-          <div class="p-4 rounded-4 border h-100 text-center d-flex flex-column book-card">
-            <img src="https://m.media-amazon.com/images/I/81W6BFaJJWL.SL1500.jpg" 
-                 class="rounded-4 shadow-sm mb-3" 
-                 alt="War and Peace">
-            <h5 class="mb-1">War and Peace</h5>
+          <div class="book-card text-center">
            
-            <ul class="small mb-3 list-unstyled">
-              <li> Leo Tolstoy</li>
-              <li>Language: English</li>
+            <img src="https://m.media-amazon.com/images/I/41AOqrVj0ML.jpg" 
+                 alt="The Quiet Momentum">
+            <div class="rating">
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+            </div>
+            <h5 class="mb-3">The Quiet Momentum</h5>
+            <ul class="small mb-3 list-unstyled-2 text-body-secondary" >
+              <li style="display: flex;">Brownlow Pub Co</li>
+              <li style="display: flex;">Language: English</li>
             </ul>
-            <div class="h2 fw-bold mb-2">₹499</div>
-            <a href="#contact" onclick="selectBook('War and Peace')" class="btn btn-outline-dark mt-auto w-100">Buy Now</a>
+            <div class="h2 fw-bold mb-3 gradient-text">₹1499</div>
+            <a href="#contact" onclick="selectBook('The Quiet Momentum')" class="btn btn-primary-custom w-100">
+              <i class="fas fa-shopping-cart me-2"></i>Buy Now
+            </a>
           </div>
         </div>
   
+        <div class="col">
+          <div class="book-card text-center">
+            
+            <img src="https://wp.dailybruin.com/images/2016/01/web.ae_.wuthering.COURTESY.jpg" 
+                 alt="Wuthering Heights">
+            <div class="rating">
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star far fa-star"></i>
+            </div>
+            <h5 class="mb-3">Wuthering Heights</h5>
+            <ul class="small mb-3 list-unstyled-2 text-body-secondary">
+              <li style="display: flex;">Emily Brontë</li>
+              <li style="display: flex;">Language: English</li>
+            </ul>
+            <div class="h2 fw-bold mb-3">₹799</div>
+            <a href="#contact" onclick="selectBook('Wuthering Heights')" class="btn btn-outline-custom w-100">
+              <i class="fas fa-heart me-2"></i>Buy Now
+            </a>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="book-card text-center">
+           
+            <img src="https://m.media-amazon.com/images/I/81W6BFaJJWL.SL1500.jpg" 
+                 alt="War and Peace">
+            <div class="rating">
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+              <i class="star fas fa-star"></i>
+            </div>
+            <h5 class="mb-3">War and Peace</h5>
+            <ul class="small mb-3 list-unstyled-2 text-body-secondary">
+              <li style="display: flex;">Leo Tolstoy</li>
+              <li style="display: flex;">Language: English</li>
+            </ul>
+            <div class="h2 fw-bold mb-3">₹499</div>
+            <a href="#contact" onclick="selectBook('War and Peace')" class="btn btn-outline-custom w-100">
+              <i class="fas fa-crown me-2"></i>Buy Now
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  
-  
 
-
-  <section id="testimonials" class="py-5 bg-light">
+  <section id="testimonials" class="py-5 bg-light animate-on-scroll">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-end mb-3">
-        <h2 class="fw-bold m-0">What Readers Say</h2>
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h2 class="section-title m-0">What Readers Say</h2>
         <div>
-          <button class="btn btn-sm btn-outline-dark me-1" data-bs-target="#testimonialCarousel"
-            data-bs-slide="prev">‹</button>
-          <button class="btn btn-sm btn-dark" data-bs-target="#testimonialCarousel" data-bs-slide="next">›</button>
+          <button class="btn btn-sm btn-outline-dark me-2" data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="btn btn-sm btn-dark" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
 
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-
           <div class="carousel-item active">
-            <div class="row g-3">
+            <div class="row g-4">
               <div class="col-md-4">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"Simple, practical, and surprisingly kind to the reader."</p>
-                  <div class="small text-body-secondary">— Aditi K.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"Simple, practical, and surprisingly kind to the reader."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Aditi K.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"I actually used the weekly review worksheet—game changer."</p>
-                  <div class="small text-body-secondary">— Rahul M.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"I actually used the weekly review worksheet—game changer."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Rahul M.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"The habit loops are so doable. I'm finally consistent."</p>
-                  <div class="small text-body-secondary">— Sneha P.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"The habit loops are so doable. I'm finally consistent."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Sneha P.</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="carousel-item">
-            <div class="row g-3">
+            <div class="row g-4">
               <div class="col-md-4">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"A must-read if you've burned out on hustle content."</p>
-                  <div class="small text-body-secondary">— Vikram R.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"A must-read if you've burned out on hustle content."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Vikram R.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"Short chapters. Tight ideas. Clear actions."</p>
-                  <div class="small text-body-secondary">— Farah S.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"Short chapters. Tight ideas. Clear actions."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Farah S.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"Helped me focus during exam season—thank you!"</p>
-                  <div class="small text-body-secondary">— Harish T.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"Helped me focus during exam season—thank you!"</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Harish T.</div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="carousel-item">
-            <div class="row g-3">
+            <div class="row g-4">
               <div class="col-md-4">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"Exactly what I needed to restart after a slump."</p>
-                  <div class="small text-body-secondary">— Priya D.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"Exactly what I needed to restart after a slump."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Priya D.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"Calm tone, strong tools. Loved the checklists."</p>
-                  <div class="small text-body-secondary">— Nikhil J.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"Calm tone, strong tools. Loved the checklists."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Nikhil J.</div>
                 </div>
               </div>
               <div class="col-md-4 d-none d-md-block">
-                <div class="review h-100 p-4 border rounded-4 bg-white shadow-sm">
-                  <p class="mb-2">"My team adopted the daily standdown ritual—works."</p>
-                  <div class="small text-body-secondary">— Sana K.</div>
+                <div class="review">
+                  <div class="rating">
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                    <i class="star fas fa-star"></i>
+                  </div>
+                  <p>"My team adopted the daily standdown ritual—works."</p>
+                  <div class="small"><i class="fas fa-user-circle me-2"></i>— Sana K.</div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-     
     </div>
   </section>
 
+  <!-- FAQ Section -->
+  <section id="faq" class="py-5 animate-on-scroll"  style="background-color: #2F5A6C;">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title" style="color: white !important;">Frequently Asked Questions</h2>
+        <p class="lead text-body-secondary" style="color: whitesmoke !important;">Everything you need to know about The Quiet Momentum</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>Is this book suitable for beginners?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Absolutely! The Quiet Momentum is designed for anyone looking to build better habits, regardless of their experience level. We start with fundamentals and gradually build complexity.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>How long does it take to see results?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Many readers report seeing small improvements within the first week. Significant momentum typically builds over 3-4 weeks of consistent application of the principles.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>Is there a digital version available?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! We offer both physical and digital versions. The digital version includes interactive worksheets and bonus materials.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+              <span>Do you offer bulk discounts for organizations?</span>
+              <i class="fas fa-plus"></i>
+            </div>
+            <div class="faq-answer">
+              <p>Yes, we offer special pricing for bulk orders (10+ copies). Contact us through the form below for custom pricing and corporate packages.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="contact" class="py-5">
+  <section id="contact" class="py-5 animate-on-scroll" style="background-color: #e5f0f3;">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-7">
-          <h2 class="fw-bold mb-3 text-center">Contact</h2>
-          <p class="text-center text-body-secondary mb-4">Questions, collaborations, bulk orders—send a message below.
-          </p>
+        <div class="col-lg-8">
+          <div class="text-center mb-5">
+            <h2 class="section-title">Contact</h2>
+            <p class="lead text-body-secondary">Questions, collaborations, bulk orders—send a message below.</p>
+            <div class="social-icons">
+              <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
 
-         
           <div id="form-messages"></div>
 
-          <form id="contact-form" class="p-4 rounded-4 border bg-white">
-            <div class="mb-3">
-              <label for="name" class="form-label">Name</label>
-              <input type="text" class="form-control" id="name" name="from_name" required>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="from_email" required>
-            </div>
-            <div class="mb-3">
-              <label for="text" class="form-label">Book</label>
-              <input type="text" class="form-control" id="bookform" name="from_book">
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+          <form id="contact-form" class="contact-form">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label"><i class="fas fa-user me-2"></i>Name</label>
+                <input type="text" class="form-control" id="name" name="from_name" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                <input type="email" class="form-control" id="email" name="from_email" required>
+              </div>
+              <div class="col-12">
+                <label for="bookform" class="form-label"><i class="fas fa-book me-2"></i>Book</label>
+                <input type="text" class="form-control" id="bookform" name="from_book" placeholder="Which book interests you?">
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label"><i class="fas fa-comment me-2"></i>Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us about your inquiry..." required></textarea>
+              </div>
             </div>
       
             <div class="d-none">
               <label>Leave this field empty</label>
               <input type="text" name="website" value="" tabindex="-1">
             </div>
-            <button type="submit" class="btn btn-dark w-100" id="submit-btn">
+            
+            <button type="submit" class="btn btn-primary-custom w-100 mt-4" id="submit-btn">
               <span class="spinner-border spinner-border-sm d-none me-2" id="loading-spinner"></span>
-              <span id="btn-text">Send</span>
+              <span id="btn-text"><i class="fas fa-paper-plane me-2"></i>Send Message</span>
             </button>
           </form>
         </div>
@@ -379,126 +1574,440 @@
     </div>
   </section>
 
+  <!-- Purchase Modal -->
   <div class="modal fade" id="purchaseModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4">
+      <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title fw-bold">Grab Your Copy</h5>
+          <h5 class="modal-title fw-bold"><i class="fas fa-gift me-2"></i>Grab Your Copy</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Ready to build calm, consistent momentum? Get <strong>The Quiet Momentum</strong> now.</p>
-          <div class="d-grid gap-2">
-            <a href="#book" onclick="buythebook()" class="btn btn-dark btn-lg">Buy the Book</a>
-            <a href="#book" onclick="buythebook()" class="btn btn-outline-dark">See Pricing</a>
+          <p class="mb-4">Ready to build calm, consistent momentum? Get <strong>The Quiet Momentum</strong> now and start your transformation journey today!</p>
+          <div class="d-grid gap-3">
+            <a href="#book" onclick="buythebook()" class="btn btn-primary-custom">
+              <i class="fas fa-shopping-cart me-2"></i>Buy the Book
+            </a>
+            <a href="#book" onclick="buythebook()" class="btn btn-outline-custom">
+              <i class="fas fa-eye me-2"></i>See Pricing
+            </a>
           </div>
-         
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Book Preview Modal -->
+  <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold"><i class="fas fa-eye me-2"></i>Book Preview - The Quiet Momentum</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="book-preview">
+            <div class="preview-page">
+              <h4>Chapter 1: The Power of Quiet</h4>
+              <p>In a world that celebrates the loud and the fast, there's something revolutionary about finding power in quiet consistency. This isn't about being passive or lacking ambition—it's about discovering a sustainable way to build the life you want.</p>
+              <p>The Quiet Momentum approach recognizes that lasting change happens in the small, daily choices that compound over time...</p>
+            </div>
+            <div class="preview-page">
+              <h4>Key Framework: The 3-Minute Rule</h4>
+              <p>Every habit that sticks starts with just three minutes. This isn't about limiting yourself to three minutes forever—it's about creating a starting point so small that it's impossible to fail.</p>
+              <ul>
+                <li>Choose your desired habit</li>
+                <li>Scale it down to 3 minutes</li>
+                <li>Do it consistently for 2 weeks</li>
+                <li>Gradually increase duration</li>
+              </ul>
+            </div>
+            <div class="text-center mt-4">
+              <p class="text-muted">This is just a small preview. Get the full book to unlock all strategies and exercises!</p>
+              <a href="#book" class="btn btn-primary-custom" data-bs-dismiss="modal">
+                <i class="fas fa-shopping-cart me-2"></i>Buy Full Book
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <!-- EmailJS SDK - Updated CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
- 
+    // Initialize EmailJS
     (function () {
       emailjs.init('WlI1Ax-Vvp-OBeX5R'); 
     })();
 
-    //   modal after 10 seconds
-    setTimeout(() => {
-      const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
-      modal.show();
-    }, 10000);
+    // Floating particles animation
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
 
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    function selectBook(name) {
-      debugger
-      document.getElementById("bookform").value = name;
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 6 + 2 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        
+        const colors = ['#4A90E2', '#FF6B9D', '#26D0CE', '#8B5CF6', '#F59E0B'];
+        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        particlesContainer.appendChild(particle);
+      }
     }
 
-function buythebook() {
-  debugger;
-  
-  const modalEl = document.getElementById('purchaseModal');
-  const modal = bootstrap.Modal.getInstance(modalEl); 
+    // Reading progress bar
+    function updateReadingProgress() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / scrollHeight) * 100;
+      document.querySelector('.reading-progress').style.width = progress + '%';
+    }
 
-  if (modal) {
-    modal.hide(); 
-  }
-}
+    // Scroll to top functionality
+    function handleScrollToTop() {
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    }
+
+    // Navbar scroll effect
+    function handleNavbarScroll() {
+      const navbar = document.querySelector('.navbar');
+      if (window.pageYOffset > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+    // Counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-number');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const step = target / (duration / 16); // 60 FPS
+            let current = 0;
+
+            const updateCounter = () => {
+              current += step;
+              if (current < target) {
+                counter.textContent = Math.floor(current);
+                requestAnimationFrame(updateCounter);
+              } else {
+                counter.textContent = target;
+                if (target < 100) {
+                  counter.textContent += '%';
+                }
+              }
+            };
+
+            counter.parentElement.classList.add('animated');
+            updateCounter();
+            observer.unobserve(counter);
+          }
+        });
+      });
+
+      counters.forEach(counter => observer.observe(counter));
+    }
+
+    // Progress bars animation
+    function animateProgressBars() {
+      const progressBars = document.querySelectorAll('.progress-fill');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const progressBar = entry.target;
+            const width = progressBar.getAttribute('data-width');
+            setTimeout(() => {
+              progressBar.style.width = width + '%';
+            }, 200);
+            observer.unobserve(progressBar);
+          }
+        });
+      });
+
+      progressBars.forEach(bar => observer.observe(bar));
+    }
+
+    // Scroll animations
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll('.animate-on-scroll, .timeline-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // FAQ toggle functionality
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const icon = element.querySelector('i');
+      const isActive = answer.classList.contains('active');
+
+      // Close all other FAQ items
+      document.querySelectorAll('.faq-answer').forEach(item => {
+        if (item !== answer) {
+          item.classList.remove('active');
+        }
+      });
+      
+      document.querySelectorAll('.faq-question i').forEach(i => {
+        if (i !== icon) {
+          i.className = 'fas fa-plus';
+        }
+      });
+
+      // Toggle current FAQ item
+      if (isActive) {
+        answer.classList.remove('active');
+        icon.className = 'fas fa-plus';
+      } else {
+        answer.classList.add('active');
+        icon.className = 'fas fa-minus';
+      }
+    }
+
+    // Star rating interaction
+    function initStarRatings() {
+      const stars = document.querySelectorAll('.star');
+      stars.forEach(star => {
+        star.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.3) rotate(15deg)';
+        });
+        
+        star.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1) rotate(0deg)';
+        });
+      });
+    }
+
+    // Enhanced smooth scrolling with offset
+    function initSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            const targetPosition = target.offsetTop - navHeight - 20;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    }
+
+    // Book selection functionality
+    function selectBook(name) {
+      document.getElementById("bookform").value = name;
+      // Add visual feedback
+      const bookCards = document.querySelectorAll('.book-card');
+      bookCards.forEach(card => {
+        card.style.opacity = '0.7';
+        if (card.textContent.includes(name)) {
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1.05)';
+          setTimeout(() => {
+            card.style.transform = 'scale(1)';
+          }, 300);
+        }
+      });
+      
+      // Scroll to contact form
+      setTimeout(() => {
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      }, 500);
+    }
+
+    // Purchase modal functionality
+    function buythebook() {
+      const modalEl = document.getElementById('purchaseModal');
+      const modal = bootstrap.Modal.getInstance(modalEl); 
+      if (modal) {
+        modal.hide(); 
+      }
+    }
+
+    document.addEventListener("scroll", function () {
+  let sections = document.querySelectorAll("section");
+  let navLinks = document.querySelectorAll(".nav-link");
+
+  sections.forEach(sec => {
+    let top = window.scrollY;
+    let offset = sec.offsetTop - 100;
+    let height = sec.offsetHeight;
+    let id = sec.getAttribute("id");
+
+    if (top >= offset && top < offset + height) {
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + id) {
+          link.classList.add("active");
+        }
+      });
+    }
+  });
+});
 
 
-    document.getElementById('contact-form').addEventListener('submit', function (e) {
-      e.preventDefault();
+    // Enhanced form submission with better UX
+    function initContactForm() {
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+        e.preventDefault();
 
+        // Honeypot check
+        if (this.website.value) {
+          showMessage('Thank you for your message!', 'success');
+          this.reset();
+          return;
+        }
 
-      if (this.website.value) {
-        showMessage('Thank you for your message!', 'success');
-        this.reset();
-        return;
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const messagesDiv = document.getElementById('form-messages');
+
+        // Disable form and show loading state
+        submitBtn.disabled = true;
+        btnText.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        loadingSpinner.classList.remove('d-none');
+        messagesDiv.innerHTML = '';
+
+        // Add loading animation to form
+        this.style.opacity = '0.7';
+        this.style.pointerEvents = 'none';
+
+        emailjs.sendForm('service_zgx8az9', 'template_ojzwj2v', this)
+          .then(function (response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showMessage('🎉 Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
+            document.getElementById('contact-form').reset();
+            
+            // Celebrate with confetti effect
+            createConfetti();
+          }, function (error) {
+            console.log('FAILED...', error);
+            showMessage('😔 Sorry, there was an error sending your message. Please try again or contact us directly.', 'error');
+          })
+          .finally(function () {
+            // Reset form state
+            submitBtn.disabled = false;
+            btnText.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
+            loadingSpinner.classList.add('d-none');
+            document.getElementById('contact-form').style.opacity = '1';
+            document.getElementById('contact-form').style.pointerEvents = 'auto';
+          });
+      });
+    }
+
+    // Confetti animation for form success
+    function createConfetti() {
+      const confettiContainer = document.createElement('div');
+      confettiContainer.style.position = 'fixed';
+      confettiContainer.style.top = '0';
+      confettiContainer.style.left = '0';
+      confettiContainer.style.width = '100%';
+      confettiContainer.style.height = '100%';
+      confettiContainer.style.pointerEvents = 'none';
+      confettiContainer.style.zIndex = '9999';
+      document.body.appendChild(confettiContainer);
+
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'absolute';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = ['#4A90E2', '#FF6B9D', '#26D0CE', '#8B5CF6', '#F59E0B'][Math.floor(Math.random() * 5)];
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.borderRadius = '50%';
+        confetti.style.animation = `confettiFall ${Math.random() * 2 + 3}s linear forwards`;
+        confettiContainer.appendChild(confetti);
       }
 
-      const submitBtn = document.getElementById('submit-btn');
-      const btnText = document.getElementById('btn-text');
-      const loadingSpinner = document.getElementById('loading-spinner');
-      const messagesDiv = document.getElementById('form-messages');
+      // Add confetti animation keyframes
+      if (!document.getElementById('confetti-styles')) {
+        const style = document.createElement('style');
+        style.id = 'confetti-styles';
+        style.textContent = `
+          @keyframes confettiFall {
+            to {
+              transform: translateY(100vh) rotate(720deg);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
 
-      //  loading 
-      submitBtn.disabled = true;
-      btnText.textContent = 'Sending...';
-      loadingSpinner.classList.remove('d-none');
-      messagesDiv.innerHTML = '';
+      // Remove confetti after animation
+      setTimeout(() => {
+        confettiContainer.remove();
+      }, 5000);
+    }
 
-
-      emailjs.sendForm('service_zgx8az9', 'template_ojzwj2v', this)
-        .then(function (response) {
-          console.log('SUCCESS!', response.status, response.text);
-          showMessage('Thank you! Your message has been sent successfully.', 'success');
-          document.getElementById('contact-form').reset();
-        }, function (error) {
-          console.log('FAILED...', error);
-          showMessage('Sorry, there was an error sending your message. Please try again.', 'error');
-        })
-        .finally(function () {
-         
-          submitBtn.disabled = false;
-          btnText.textContent = 'Send';
-          loadingSpinner.classList.add('d-none');
-        });
-    });
-
+    // Enhanced message display with icons and animations
     function showMessage(message, type) {
       const messagesDiv = document.getElementById('form-messages');
       const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-      const iconClass = type === 'success' ? '✓' : '✗';
+      const iconClass = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
 
       messagesDiv.innerHTML = `
-        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
-          <strong>${iconClass}</strong> ${message}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div class="alert ${alertClass} alert-dismissible fade show mb-4" role="alert" style="animation: slideInDown 0.5s ease-out;">
+          <i class="${iconClass} me-2"></i>
+          ${message}
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       `;
 
-      //  hide success messages after 5 sec
+      // Add slide animation
+      if (!document.getElementById('alert-animations')) {
+        const style = document.createElement('style');
+        style.id = 'alert-animations';
+        style.textContent = `
+          @keyframes slideInDown {
+            from {
+              transform: translateY(-100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0);
+              opacity: 1;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+
+      // Auto-dismiss success messages
       if (type === 'success') {
         setTimeout(() => {
           const alert = messagesDiv.querySelector('.alert');
@@ -508,10 +2017,140 @@ function buythebook() {
           }
         }, 5000);
       }
+
+      // Scroll to message
+      messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
+
+    // Auto-show purchase modal with delay
+    function initPurchaseModal() {
+      setTimeout(() => {
+        const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+        modal.show();
+      }, 10000);
+    }
+
+    // Form field enhancements
+    function initFormEnhancements() {
+      const formControls = document.querySelectorAll('.form-control');
+      
+      formControls.forEach(control => {
+        // Add focus/blur effects
+        control.addEventListener('focus', function() {
+          this.parentElement.style.transform = 'translateY(-2px)';
+        });
+        
+        control.addEventListener('blur', function() {
+          this.parentElement.style.transform = 'translateY(0)';
+        });
+
+        // Add typing animation
+        control.addEventListener('input', function() {
+          this.style.borderColor = '#4A90E2';
+          setTimeout(() => {
+            this.style.borderColor = '#E2E8F0';
+          }, 300);
+        });
+      });
+    }
+
+    // Enhanced hover effects for book cards
+    function initBookCardEffects() {
+      const bookCards = document.querySelectorAll('.book-card');
+      
+      bookCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.zIndex = '10';
+          // Add glow effect
+          this.style.boxShadow = '0 25px 80px rgba(74, 144, 226, 0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.zIndex = '1';
+          this.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.08)';
+        });
+      });
+    }
+
+    // Testimonial auto-advance
+    function initTestimonialCarousel() {
+      const carousel = document.getElementById('testimonialCarousel');
+      if (carousel) {
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+          interval: 5000,
+          wrap: true
+        });
+      }
+    }
+
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize all features
+      createParticles();
+      animateCounters();
+      animateProgressBars();
+      handleScrollAnimations();
+      initStarRatings();
+      initSmoothScrolling();
+      initContactForm();
+      initFormEnhancements();
+      initBookCardEffects();
+      initTestimonialCarousel();
+      
+      // Auto-show modal after delay
+      initPurchaseModal();
+
+      // Scroll to top button
+      document.getElementById('scrollToTop').addEventListener('click', function() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // Global scroll events
+      window.addEventListener('scroll', function() {
+        updateReadingProgress();
+        handleScrollToTop();
+        handleNavbarScroll();
+      });
+
+      // Add entrance animations with stagger effect
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      animateElements.forEach((el, index) => {
+        el.style.animationDelay = (index * 0.1) + 's';
+      });
+
+      // Add typewriter effect to hero title
+      const heroTitle = document.querySelector('.display-5');
+      if (heroTitle) {
+        heroTitle.style.overflow = 'hidden';
+        heroTitle.style.whiteSpace = 'nowrap';
+        heroTitle.style.borderRight = '3px solid #4A90E2';
+        
+        setTimeout(() => {
+          heroTitle.style.borderRight = 'none';
+          heroTitle.style.whiteSpace = 'normal';
+        }, 3000);
+      }
+
+      // Add parallax effect to hero section
+      window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection && scrolled < heroSection.offsetHeight) {
+          heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+      });
+
+      console.log('🚀 Interactive Book Landing Page Loaded Successfully!');
+    });
+
+    // Global functions for onclick handlers
+    window.selectBook = selectBook;
+    window.buythebook = buythebook;
+    window.toggleFaq = toggleFaq;
   </script>
 </body>
 
-
 </html>
-
