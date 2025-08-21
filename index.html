@@ -306,7 +306,7 @@
     .stats-section {
       background: transparent;
       color: white;
-      padding: 3rem 0;
+      /* padding: 3rem 0; */
     }
 
     .stat-item {
@@ -1095,10 +1095,10 @@
           <p class="lead-2 mt-3">Build unstoppable habits with calm focus. This book is your friendly guide to creating
             momentum without burnout.</p>
           <div class="d-flex gap-3 mt-4">
-            <a href="#book" class="btn btn-primary-custom btn-lg">
+            <a href="#book" class="btn btn-primary-custom btn-lg" style="padding: 10px;">
              Buy Now
             </a>
-            <a href="#about" class="btn btn-outline-custom btn-lg">
+            <a href="#about" class="btn btn-outline-custom btn-lg" style="padding: 10px;">
              Learn More
             </a>
           </div>
@@ -2135,13 +2135,13 @@
       }
 
       // Add parallax effect to hero section
-      window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection && scrolled < heroSection.offsetHeight) {
-          heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
-        }
-      });
+    //  window.addEventListener('scroll', function() {
+      //  const scrolled = window.pageYOffset;
+      //  const heroSection = document.querySelector('.hero-section');
+      //  if (heroSection && scrolled < heroSection.offsetHeight) {
+     //     heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+    //    }
+     // });
 
       console.log('🚀 Interactive Book Landing Page Loaded Successfully!');
     });
